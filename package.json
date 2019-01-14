@@ -1,10 +1,9 @@
 {
-  "name": "I Like You -- Express API",
+  "name": "express-api-I-like-you",
   "engines": {
     "node": "8.9.1",
     "npm": "6.4.1"
   },
-  
   "version": "0.0.1",
   "description": "",
   "main": "index.js",

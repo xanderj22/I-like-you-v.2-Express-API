@@ -1,7 +1,7 @@
 'use strict'
 
 // creating a base name for the mongodb
-const mongooseBaseName = 'express-api-Xproject3' // replaced 'express-api-template'
+const mongooseBaseName = 'express-api-I-like-you' // replaced 'express-api-template'
 
 // create the mongodb uri for development and test
 const database = {
