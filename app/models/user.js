@@ -10,6 +10,28 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  userName: {
+    type: String,
+    required: true,
+    maxlength: 13
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  about: {
+    type: String,
+    required: true,
+    maxlength: 36
+  },
+  genderIdentity: {
+    type: String,
+    required: true
+  },
+  preferredPronoun: {
+    type: String,
+    required: true
+  },
   token: String
 }, {
   timestamps: true,
