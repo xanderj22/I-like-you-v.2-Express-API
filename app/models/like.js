@@ -2,24 +2,19 @@ const mongoose = require('mongoose')
 
 const likeSchema = new mongoose.Schema({
   interests: {
-    type: String,
-    required: true
+    type: String
   },
   fiveFaves: {
-    type: String,
-    required: true
+    type: String
   },
   personalityTypes: {
-    type: String,
-    required: true
+    type: String
   },
   genderPrefs: {
-    type: String,
-    required: true
+    type: String
   },
   searchingFor: {
-    type: String,
-    required: true
+    type: String
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

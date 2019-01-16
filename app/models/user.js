@@ -12,25 +12,22 @@ const userSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    required: true,
     maxlength: 13
   },
   location: {
-    type: String,
-    required: true
+    type: String
   },
   about: {
     type: String,
-    required: true,
     maxlength: 36
   },
   genderIdentity: {
-    type: String,
-    required: true
+    type: String
   },
   preferredPronoun: {
-    type: String,
-    required: true
+    type: String
+  },
+  like: { type: mongoose.Schema.Types.ObjectId, ref: 'Like'
   },
   token: String
 }, {

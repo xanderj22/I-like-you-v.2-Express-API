@@ -11,6 +11,9 @@ const bcryptSaltRounds = 10
 
 const handle = require('../../lib/error_handler')
 const BadParamsError = require('../../lib/custom_errors').BadParamsError
+const customErrors = require('../../lib/custom_errors')
+const handle404 = customErrors.handle404
+// const requireOwnership = customErrors.requireOwnership
 
 const User = require('../models/user')
 
@@ -132,6 +135,76 @@ router.delete('/sign-out', requireToken, (req, res) => {
   // save the token and respond with 204
   req.user.save()
     .then(() => res.sendStatus(204))
+    .catch(err => handle(err, res))
+})
+
+// Trying something to patch user data
+router.patch('/users', requireToken, (req, res) => {
+  // console.log('before delete', req.body)
+
+  // if the client attempts to change the 'token', 'email', or 'password' property the code below will prevent that by deleting that key/value pair
+  delete req.body.user.token
+  delete req.body.user.email
+  delete req.body.user.hashedPassword
+
+  // console.log('after delete', req.body)
+
+  User.findById(req.user._id)
+    .then(handle404)
+    .then(user => {
+      // the client will often send empty strings for parameters that it does
+      // not want to update. We delete any key/value pair where the value is
+      // an empty string before updating
+      Object.keys(req.body.user).forEach(key => {
+        if (req.body.user[key] === '') {
+          delete req.body.user[key]
+        }
+      })
+
+      // console.log('after drop empty', req.body)
+
+      // pass the result of Mongoose's `.update` to the next `.then`
+      return user.update(req.body.user)
+    })
+    // if that succeeded, return 204 and no JSON
+    .then(() => res.sendStatus(204))
+    // if an error occurs, pass it to the handler
+    .catch(err => handle(err, res))
+})
+
+router.get('/users', requireToken, (req, res) => {
+  // req.params.id will be set based on the `:id` in the route
+  User.findById(req.user._id)
+    .then(handle404)
+    // if `findById` is succesful, respond with 200 and "example" JSON
+    .then(user => res.status(200).json({ user: user.toObject() }))
+    // if an error occurs, pass it to the handler
+    .catch(err => handle(err, res))
+})
+
+// router.get('/users', requireToken, (req, res) => {
+//   User.find(req.user._id)
+//     .then(users => {
+//       // `users` will be an array of Mongoose documents
+//       // we want to convert each one to a POJO, so we use `.map` to
+//       // apply `.toObject` to each one
+//       return users.map(user => user.toObject())
+//     })
+//     // respond with status 200 and JSON of the users
+//     .then(users => res.status(200).json({ users: users }))
+//     // if an error occurs, pass it to the handler
+//     .catch(err => handle(err, res))
+// })
+
+router.delete('/users', requireToken, (req, res) => {
+  User.findById(req.user._id)
+    .then(handle404)
+    .then(user => {
+      user.remove()
+    })
+    // send back 204 and no content if the deletion succeeded
+    .then(() => res.sendStatus(204))
+    // if an error occurs, pass it to the handler
     .catch(err => handle(err, res))
 })
 

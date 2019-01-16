@@ -31,17 +31,29 @@ const router = express.Router()
 // INDEX
 // GET /likes
 router.get('/likes', requireToken, (req, res) => {
-  Like.find()
+  Like.find({
+    'owner': req.user._id
+  }).sort({ field: 'asc', _id: -1 }).limit(1)
     .then(likes => {
-      // `likes` will be an array of Mongoose documents
-      // we want to convert each one to a POJO, so we use `.map` to
-      // apply `.toObject` to each one
-      return likes.map(like => like.toObject())
+      const like = likes[0]
+      console.log('like is', like)
+      // what happens when there are no likes created?
+      requireOwnership(req, like)
+      res.status(200).json({ like: like.toObject() })
     })
-    // respond with status 200 and JSON of the likes
-    .then(likes => res.status(200).json({ likes: likes }))
-    // if an error occurs, pass it to the handler
     .catch(err => handle(err, res))
+
+  // Like.find()
+  //   .then(likes => {
+  //     // `likes` will be an array of Mongoose documents
+  //     // we want to convert each one to a POJO, so we use `.map` to
+  //     // apply `.toObject` to each one
+  //     return likes.map(like => like.toObject())
+  //   })
+  //   // respond with status 200 and JSON of the likes
+  //   .then(likes => res.status(200).json({ likes: likes }))
+  //   // if an error occurs, pass it to the handler
+  //   .catch(err => handle(err, res))
 })
 
 // SHOW
