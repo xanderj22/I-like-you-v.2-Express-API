@@ -42,7 +42,14 @@ const app = express()
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
-
+// app.use(function (req, res, next) {
+//   const origin = req.get('origin')
+//   res.header('Access-Control-Allow-Origin', origin)
+//   res.header('Access-Control-Allow-Credentials', true)
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE,OPTIONS')
+//   res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization,content-type,application/json')
+//   next()
+// })
 // define port for API to run on
 const port = process.env.PORT || 4741
 
