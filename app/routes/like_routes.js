@@ -36,7 +36,7 @@ router.get('/likes', requireToken, (req, res) => {
   }).sort({ field: 'asc', _id: -1 }).limit(1)
     .then(likes => {
       const like = likes[0]
-      console.log('like is', like)
+      // console.log('like is', like)
       // what happens when there are no likes created?
       requireOwnership(req, like)
       res.status(200).json({ like: like.toObject() })
