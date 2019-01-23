@@ -42,6 +42,10 @@ const app = express()
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
+
+// The block of code below was test code for working around an issue with the line of code above/CORS
+// The issue was resolved by changing the client_origin settings (for MONGODB_URI) in my heroku accout
+
 // app.use(function (req, res, next) {
 //   const origin = req.get('origin')
 //   res.header('Access-Control-Allow-Origin', origin)
@@ -50,6 +54,7 @@ app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
 //   res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization,content-type,application/json')
 //   next()
 // })
+
 // define port for API to run on
 const port = process.env.PORT || 4741
 
