@@ -8,7 +8,7 @@ https://github.com/xanderj22/I-like-you-v.2-Express-API
 
 Links to deployed sites:
 https://thawing-headland-69785.herokuapp.com
-https://xanderj22.github.io/I-like-you-v.2 ??
+https://xanderj22.github.io/I-like-you-v.2-Client
 Initial project ideas and ERDs are located here: xanderj22/rails-api-Xproject2/public/Project Info--ERDs
 
 User stories:
