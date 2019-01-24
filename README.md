@@ -2,6 +2,8 @@
 
 A full-stack application created using HTMl, CSS, Javascript, jquery AJAX, Express API, Mongoose/MongoDB, and json.
 
+Additional installation requirements: npm install
+
 Links to github repositories:
 https://github.com/xanderj22/I-like-you-v.2-Client
 https://github.com/xanderj22/I-like-you-v.2-Express-API
@@ -9,7 +11,24 @@ https://github.com/xanderj22/I-like-you-v.2-Express-API
 Links to deployed sites:
 https://thawing-headland-69785.herokuapp.com
 https://xanderj22.github.io/I-like-you-v.2-Client
-Initial project ideas and ERDs are located here: xanderj22/rails-api-Xproject2/public/Project Info--ERDs
+
+Initial project ERD located here:
+https://github.com/xanderj22/I-like-you-v.2-Express-API/public/ERD
+
+Routes that the API expects: 
+
+| Prefix | Verb   | URL Pattern        | Action         |   |
+|--------|--------|--------------------|----------------|---|
+| User   | POST   | '/sign-up'         | user#signup    |   |
+|        | POST   | '/sign-in'         | user#signin    |   |
+|        | PATCH  | '/change-password' | user#changepw  |   |
+|        | DELETE | '/sign-out'        | user#signout   |   |
+|        | PATCH  | '/users'           | user#create    |   |
+|        | PATCH  | '/users'           | user#update    |   |
+|        | GET    | '/users'           | user#showInfo  |   |
+|        | DELETE | '/users'           | user#delete    |   |
+| likes  | POST   | '/likes'           | likes#create   |   |
+|        | GET    | '/likes'           | likes#showInfo |   |
 
 User stories:
 
