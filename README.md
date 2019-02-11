@@ -51,11 +51,10 @@ User stories:
 
 Future versions and improvements might include:
 
-
-  -Better user experience
   
-  -
+  -Ability to store and retrieve user data based on user profile name/nickname
   
+  -Ability to choose/add profile picture
 
 
 My process involved referencing WDI course materials, reviewing online resources such as w3schools.com, reviewing the full-stack project issue queue, collaborating with other developers in training, and getting help from the amazing WDI instructors.
